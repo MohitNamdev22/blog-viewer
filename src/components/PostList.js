@@ -9,7 +9,7 @@ export default function PostList({ posts, onPostSelect}) {
                 onClick={() => onPostSelect(post)}
                 role="button"
                 tabIndex={0}
-                onKeyPress={(e) => e.key === "Enter" && onPostSelect(post)}
+                onKeyDown={(e) => e.key === "Enter" && onPostSelect(post)}
                 >
                     <h2 className="text-lg font-semibold text-gray-900">{post.title}</h2>
 
