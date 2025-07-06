@@ -1,40 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 📰 Blog Viewer - Next.js Assignment
 
-## Getting Started
+The goal was to build a simple blog post viewer in **Next.js** and perform testing.
+![image](https://github.com/user-attachments/assets/3dc57616-4554-4bae-a732-6065ff9c68ff)
 
-First, run the development server:
+
+---
+
+## 🛠️ Tech Stack
+
+- **Next.js** (Pages Router)
+- **Tailwind CSS**
+- **Jest & React Testing Library**
+- **JavaScript**
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/MohitNamdev22/blog-viewer
+cd blog-viewer
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2️⃣ Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### 3️⃣ Start the Development Server
+```bash
+npm run dev
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### 3️⃣ Start the Development Server
+```bash
+npm run dev
+```
+Then open your browser at:
+🌐 http://localhost:3000/posts
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+Also added a Redirection configuration to redirect / to /posts
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🌀View Fallback/Loading UI
+To simulate and view the loading spinner:
 
-To learn more about Next.js, take a look at the following resources:
+1. Go to /pages/posts/index.js
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+2. Temporarily comment out the API call and set posts = null; manually inside getServerSideProps like this:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+export async function getServerSideProps() {
+  return {
+    props: {
+      posts: null, // simulate loading
+    },
+  };
+}
+```
 
-## Deploy on Vercel
+3. Refresh the page → You’ll see the spinner with "Loading...".
+![image](https://github.com/user-attachments/assets/d70b968f-56a8-479a-8cee-a7a3ab21f71d)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+4. Revert the code after checking.
+
+## 🧪 Running Tests
+
+### Run all test cases:
+
+```bash
+npm run test
+```
+
+### Run with coverage report:
+
+```bash
+npm run test:coverage
+```
+
+## 📁 Folder Structure
+
+```bash
+/pages
+  ├── api/posts.js            → API route with mock data
+  └── posts/index.js          → Blog viewer page (with SSR)
+  
+/components
+  ├── PostList.js             → List of clickable post cards
+  └── PostInformation.js      → Modal with post content
+
+/src/__test__
+  ├── PostList.test.js        → Tests list render & click
+  ├── PostInformation.test.js → Tests modal render & close
+  └── posts.test.js           → Tests SSR data fetching
+```
+
+## 📦 Scripts in package.json
+```bash
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+```
