@@ -1,5 +1,7 @@
 import { getServerSideProps } from '@/pages/posts';
 
+//for testing the blog data loaded correctly from the server before the page shows
+
 describe('getServerSideProps', () => {
   beforeEach(() => {
     global.fetch = jest.fn(() =>

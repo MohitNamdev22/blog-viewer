@@ -5,9 +5,16 @@ import PostInformation from '@/components/PostInformation';
 export default function Posts({posts}) {
     const [selectedPost, setSelectedPost] = useState(null);
 
-    if(!posts){
-        return <div>Loading...</div>;
-    }
+    //adding a loading delay till posts not avaiable
+  if (!posts) {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 flex flex-col items-center justify-center py-10">
+      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
+      <p className="mt-4 text-gray-600 font-medium">Loading...</p>
+    </div>
+  );
+}
+
 
     return (
        <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 flex flex-col items-center py-10">
@@ -25,6 +32,7 @@ export default function Posts({posts}) {
     );
 }
 
+//making call to api using getServerSideProps
 export async function getServerSideProps(){
     try{
         const res = await fetch('http://localhost:3000/api/posts');

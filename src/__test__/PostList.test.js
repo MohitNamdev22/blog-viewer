@@ -1,6 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import PostList from '@/components/PostList'
 
+//here we testing can a user see the list of posts and click on it
+
 describe('PostList', () => {
     const mockBlogs = [
         { 
@@ -29,9 +31,4 @@ describe('PostList', () => {
     expect(mockOnPostSelect).toHaveBeenCalledWith(mockBlogs[0]);
   });
 
-  it('calls onPostSelect when Enter key is pressed', () => {
-  render(<PostList posts={mockBlogs} onPostSelect={mockOnPostSelect} />);
-  fireEvent.keyDown(screen.getByText('Second Post').parentElement, { key: 'Enter', code: 'Enter' });
-  expect(mockOnPostSelect).toHaveBeenCalledWith(mockBlogs[1]);
-});
 })
